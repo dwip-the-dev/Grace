@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Server Under Pressure</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #111;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 420px;
+      padding: 24px;
+    }
+
+    .icon {
+      font-size: 96px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 600;
+      margin: 0 0 12px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #555;
+      margin: 0 0 24px;
+      line-height: 1.5;
+    }
+
+    .retry {
+      font-size: 13px;
+      color: #777;
+    }
+
+    .footer {
+      margin-top: 32px;
+      font-size: 12px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">⚠️</div>
+
+    <h1>Server under heavy load</h1>
+
+    <p>
+      The server is currently handling more traffic than usual.
+      Existing sessions are safe. New requests will resume shortly.
+    </p>
+
+    <div class="retry">
+      Retrying automatically in <span id="countdown">10</span>s…
+    </div>
+
+    <div class="footer">
+      Brought to you by <strong>Grace</strong>
+    </div>
+  </div>
+
+  <script>
+    let seconds = 10;
+    const el = document.getElementById("countdown");
+
+    setInterval(() => {
+      seconds--;
+      if (seconds <= 0) {
+        window.location.href = "/";
+      } else {
+        el.textContent = seconds;
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
+
